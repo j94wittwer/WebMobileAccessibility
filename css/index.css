@@ -10,3 +10,24 @@
 .studies li {
     margin-top: 1.2rem
 }
+
+.no-border {
+    border: none;
+    background: none;
+}
+
+.skip-content-link {
+    position: absolute;
+    left: -999px;
+    width: 1px;
+    height: 1px;
+    top: auto;
+}
+
+.skip-content-link:focus {
+    display: inline-block;
+    height: auto;
+    width: auto;
+    position: static;
+    margin: auto;
+}
