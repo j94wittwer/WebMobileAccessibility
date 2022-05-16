@@ -38,20 +38,32 @@ function login(event) {
     var email = document.getElementById('login-email-control');
     if (email.validity.valid) {
         setValid(email);
+        document.getElementById('invalid-feedback-email').innerHTML = '';
+        
     } else if (email.validity.valueMissing) {
         setInvalid(email);
         hasError = true;
+        document.getElementById('invalid-feedback-email').innerHTML = 'Please Enter an Email';
     } else {
         setInvalid(email);
+        document.getElementById('invalid-feedback-email').innerHTML = 'Email is Invalid';
+
         hasError = true;
     }
+
+
+
 
     var password = document.getElementById('login-password-control');
     if (password.value.trim().length == 0) {
         setInvalid(password);
         hasError = true;
+        document.getElementById('invalid-feedback-password').innerHTML = 'Please Enter Your Password';
+
     } else {
         setValid(password);
+        document.getElementById('invalid-feedback-password').innerHTML = '';
+
     }
 
     if (hasError) {
