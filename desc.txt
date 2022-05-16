@@ -1,0 +1,6 @@
+This graphic displays the historic data of the global mean surface temperature change. Starting in 1880, the changes were slightly below 0.0.
+It took a dip between 1880 and 1900. After 1900 it fell down to -0.3 degrees celcius until 1910. Between 1910 and 1942
+changes went up constantly with the steepest increase happening between 1938 and 1942. In 1942 it hit 0.1 degree change.
+After 1942, the change fell slightly under 0.0 again and stayed more or less constantly at -.05 until the mid 1970s.
+After 1975, changes went up every year with two stagnancies from 1980 to 1985 and 1990 and 1995.
+The change hit a record in 2018 at about 1.0 degrees.
