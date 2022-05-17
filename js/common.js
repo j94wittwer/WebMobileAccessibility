@@ -48,3 +48,27 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.navbar-toggler')
         .addEventListener('click', toggleNavigation, false);
 }, false);
+
+
+
+
+//Font increase function
+let current = 1;
+
+document.getElementById('font-increase-button').addEventListener('click',function(){
+    if (current < 2 ){ 
+     current+=0.1;
+     document.documentElement.style.fontSize = (parseFloat(current)) +"rem";
+    }
+})
+
+document.getElementById('font-decrease-button').addEventListener('click',function(){
+    if (current >= 1 ){  
+     current-=0.1;
+     document.documentElement.style.fontSize = (parseFloat(current)) +"rem";
+    }
+}
+)
+
+
+
