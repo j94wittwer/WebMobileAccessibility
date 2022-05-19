@@ -118,7 +118,13 @@ function register(event) {
     if (firstName.value.trim().length == 0) {
         setInvalid(firstName);
         hasError = true;
-    } else if (firstName.validity.valid) {
+        document.getElementById("invalid-feedback-firstName").innerHTML = "Please Enter a First Name"
+    } else if (firstName.value.trim().length > 30){
+        setInvalid(firstName);
+        hasError = true;
+        document.getElementById("invalid-feedback-firstName").innerHTML = "The given name is too long"
+    }    
+    else if (firstName.validity.valid) {
         setValid(firstName);
     }
 
@@ -126,17 +132,30 @@ function register(event) {
     if (lastName.value.trim().length == 0) {
         setInvalid(lastName);
         hasError = true;
-    } else if (lastName.validity.valid) {
+        document.getElementById("invalid-feedback-lastName").innerHTML = "Please Enter a Last Name"
+    } else if (lastName.value.trim().length > 30){
+        setInvalid(lastName);
+        hasError = true;
+        document.getElementById("invalid-feedback-lastName").innerHTML = "The given name is too long"
+    }
+     else if (lastName.validity.valid) {
         setValid(lastName);
     }
 
     var email = document.getElementById('register-email-control');
+    var emailValue = email.value.trim();
     if (email.validity.valid) {
         setValid(email);
     } else if (email.validity.valueMissing) {
         setInvalid(email);
         hasError = true;
-    } else {
+        document.getElementById("invalid-feedback-registerEmail").innerHTML = "Please Enter an Email Address"
+    } else if (emailValue.match(/[@]+/) == null) {
+        setInvalid(email);
+        hasError = true;
+        document.getElementById("invalid-feedback-registerEmail").innerHTML = "Please Enter a Valid Email Address"
+    }
+    else {
         setInvalid(email);
         hasError = true;
     }
@@ -146,15 +165,24 @@ function register(event) {
     if (passwordValue.length < 8) {
         setInvalid(password);
         hasError = true;
-    } else if (passwordValue.length > 16) {
+        document.getElementById("invalid-feedback-registerPassword").innerHTML = "Your Password is too Short"
+    } if (passwordValue.length == 0) {
         setInvalid(password);
         hasError = true;
+        document.getElementById("invalid-feedback-registerPassword").innerHTML = "Please Enter a Password"   
+    }
+    else if (passwordValue.length > 16) {
+        setInvalid(password);
+        hasError = true;
+        document.getElementById("invalid-feedback-registerPassword").innerHTML = "Your Password is too Long"
     } else if (passwordValue.match(/[a-zA-Z]+/) == null) {
         setInvalid(password);
         hasError = true;
+        document.getElementById("invalid-feedback-registerPassword").innerHTML = "Your Password has no Letters"
     } else if (passwordValue.match(/[0-9]+/) == null) {
         setInvalid(password);
         hasError = true;
+        document.getElementById("invalid-feedback-registerPassword").innerHTML = "Your Password has no Numbers"
     } else {
         setValid(password);
     }
@@ -163,9 +191,11 @@ function register(event) {
     if (programme.validity.valueMissing) {
         setInvalid(programme);
         hasError = true;
+        document.getElementById("invalid-feedback-programme").innerHTML = "Please Select your Programme"
     } else if (!programme.validity.valid) {
         setInvalid(programme);
         hasError = true;
+        document.getElementById("invalid-feedback-programme").innerHTML = "Please Select a Valid Programme"
     } else {
         setValid(programme);
     }
@@ -190,3 +220,40 @@ document.addEventListener('DOMContentLoaded', function() {
         .getElementById('register-register-button')
         .addEventListener('click', register, false);
 }, false);
+
+// Toggle aria-expanded label whenever sub menu is opened / closed
+
+$(".dropdown-toggle").click(function (e) {
+
+    let ariaExpanded = e.target.getAttribute("aria-expanded");
+
+    if (ariaExpanded === "true") {
+        ariaExpanded = "false";
+    } else {
+        ariaExpanded = "true";
+    }
+
+    e.target.setAttribute("aria-expanded", ariaExpanded)
+});
+
+
+// Close dropdown by clicking escape button
+
+$(document).keyup(function (e) {
+    if (e.keyCode === 27) {
+        let expandedMenuItem = $('.dropdown-menu.show');
+        expandedMenuItem.removeClass("show");
+    }
+});
+
+
+// Close dropdown when navigating to next menu item with tab key
+
+$(document).keyup(function (e) {
+    if (e.keyCode === 9) {
+        if (e.target.className.includes("dropdown-toggle")) {
+            let expandedMenuItem = $('.dropdown-menu.show');
+            expandedMenuItem.removeClass("show");
+        }
+    }
+});
